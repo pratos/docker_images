@@ -2,8 +2,7 @@ FROM python:3.6
 
 RUN apt-get update && \
     apt-get install -y tesseract-ocr && \
-    apt-get install libmagickwand-dev && \
-    apt-get install libmagickcore5-extra
+    apt-get install libmagickwand-dev
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
