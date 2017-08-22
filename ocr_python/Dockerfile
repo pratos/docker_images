@@ -1,8 +1,22 @@
 FROM python:3.6
 
-RUN apt-get update && \
-    apt-get install -y tesseract-ocr && \
-    apt-get install libmagickwand-dev
+RUN \
+  apt-get update && \
+  apt-get -y install \
+    ghostscript \
+    libmagickwand-dev \
+    curl \
+    gimp && \
+  apt-get -y install \
+    gnuplot \
+    imagemagick-doc \
+    imagemagick && \
+    tesseract-ocr && \
+  rm -rf /var/lib/apt/lists/*
+
+# Clean the cache created by package installations
+RUN \
+  apt-get clean
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
